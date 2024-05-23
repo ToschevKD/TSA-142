@@ -1,45 +1,48 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 /**
- * @brief Функция getA вычисляет результат по формуле a = x * 2 + y - z.
- * 
- * @param x Первый аргумент для вычисления a.
- * @param y Второй аргумент для вычисления a.
- * @param z Третий аргумент для вычисления a.
- * @return Результат вычисления по формуле a = x * 2 + y - z.
+ * Функция для расчета времени, за которое путник одолел первую половину пути
+ * @param t1 Время движения первой части пути
+ * @param v1 Скорость движения первой части пути
+ * @param t2 Время движения второй части пути
+ * @param v2 Скорость движения второй части пути
+ * @param t3 Время движения третьей части пути
+ * @param v3 Скорость движения третьей части пути
+ * @return Время, за которое путник одолел первую половину пути
  */
-double getA(const double x, const double y, const double z);
+double calculateFirstHalfTime(double t1, double v1, double t2, double v2, double t3, double v3) {
+    double totalDistance = (t1 * v1) + (t2 * v2) + (t3 * v3);
+    double halfDistance = totalDistance / 2.0;
 
-/**
- * @brief Функция getB вычисляет результат по формуле b = x + y * 3 - z.
- * 
- * @param x Первый аргумент для вычисления b.
- * @param y Второй аргумент для вычисления b.
- * @param z Третий аргумент для вычисления b.
- * @return Результат вычисления по формуле b = x + y * 3 - z.
- */
-double getB(const double x, const double y, const double z);
+    double firstHalfTime = 0.0;
+    double distanceCovered = 0.0;
 
-/**
- * @brief Главная функция программы.
- * 
- * @return 0 в случае успешного завершения программы.
- */
-int main();
+    // Рассчитываем время для движения до достижения половины пути
+    if (halfDistance <= (t1 * v1)) {
+        firstHalfTime = halfDistance / v1;
+    } else if (halfDistance <= ((t1 * v1) + (t2 * v2))) {
+        firstHalfTime = t1 + ((halfDistance - (t1 * v1)) / v2);
+    } else {
+        firstHalfTime = t1 + t2 + ((halfDistance - (t1 * v1) - (t2 * v2)) / v3);
+    }
+
+    return firstHalfTime;
+}
+
 int main() {
-  const double x=-2.9;
-  const double y=15.5;
-  const double z=1.5;
-  cout << "x=" << x << "y=" << y << "z=" << z << endl;
-         cout << "a=" << getA(x,y,z) << "b=" << getB(x,y,z) << endl;
-return 0;
-}
-double getA(const double x, const double y, const double z)
-{
-  return sqrt(pow(x,2)+y)-pow(y,2)*pow(sin(x+z/x),3);
-}
-  double getB(const double x, const double y, const double z)
-{
-  return pow(cos(pow(x,3)),2)-x/sqrt(pow(z,2)+pow(y,2));
+    double t1, v1, t2, v2, t3, v3;
+
+    cout << "Введите время t1 и скорость v1 для первой части пути: ";
+    cin >> t1 >> v1;
+
+    cout << "Введите время t2 и скорость v2 для второй части пути: ";
+    cin >> t2 >> v2;
+
+    cout << "Введите время t3 и скорость v3 для третьей части пути: ";
+    cin >> t3 >> v3;
+
+    double firstHalfTime = calculateFirstHalfTime(t1, v1, t2, v2, t3, v3);
+    cout << "Время, за которое путник одолел первую половину пути: " << firstHalfTime << " часов" << endl;
+
+    return 0;
 }
