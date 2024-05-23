@@ -1,15 +1,23 @@
 #include <iostream>
+using namespace std;
+/**
+ * @brief Функция для конвертации веса из граммов в унции
+ * @param grams Значение веса в граммах
+ * @return Значение веса в унциях
+ */
+float gramsToOunces(float grams) {
+    float ounces = grams / 28.3;
+    return ounces;
+}
 
 int main() {
-  double grams, ounces;
-  //Ввод значения веса в граммах
-  std::cout <<"Введите значение в граммах: ";
-  std::cin>>grams;
+    float weightInGrams;
+    cout << "Введите значение веса в граммах: ";
+    cin >> weightInGrams;
 
-  //Перевод веса из граммов в унции
-  ounces=grams/28.3;
+    float weightInOunces = gramsToOunces(weightInGrams);
 
-  //Вывод результата
-  std::cout <<"Вес в унциях: "<<ounces<<std::endl;
-  return 0; 
+    cout << "Вес в унциях: " << weightInOunces << std::endl;
+
+    return 0;
 }
