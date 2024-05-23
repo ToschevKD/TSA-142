@@ -26,7 +26,6 @@ double getB(const double x, const double y, const double z);
  * 
  * @return 0 в случае успешного завершения программы.
  */
-int main();
 int main() {
   const double x=-2.9;
   const double y=15.5;
