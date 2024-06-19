@@ -1,5 +1,5 @@
 #include <iostream>
-#include <utility>
+#include <utility> // Для использования std::pair и std::make_pair
 using namespace std;
 
 /**
@@ -14,6 +14,20 @@ using namespace std;
  * @param v3 Скорость движения во время t3
  * @return Время для одоления первой половины пути и время для привала
  */
+
+// Функция для проверки ввода на корректность и неотрицательность
+bool checkInput(double &t, double &v) {
+    if (!(cin >> t >> v)) {
+        cerr << "Ошибка: введено нечисловое значение.\n";
+        return false;
+    }
+    if (t < 0 || v < 0) {
+        cerr << "Ошибка: время и скорость не могут быть отрицательными.\n";
+        return false;
+    }
+    return true;
+}
+
 pair<double, double> calculateTimes(double t1, double v1, double t2, double v2, double t3, double v3) {
     double totalDistance = t1 * v1 + t2 * v2 + t3 * v3;
     double halfDistance = totalDistance / 2.0;
@@ -39,22 +53,13 @@ int main() {
     double t1, v1, t2, v2, t3, v3;
 
     cout << "Введите время t1 и скорость v1 для первой части пути: ";
-    if (!(cin >> t1 >> v1)) {
-        cerr << "Ошибка: введено нечисловое значение для t1 или v1\n";
-        return 1;
-    }
+    if (!checkInput(t1, v1)) return 1;
 
     cout << "Введите время t2 и скорость v2 для второй части пути: ";
-    if (!(cin >> t2 >> v2)) {
-        cerr << "Ошибка: введено нечисловое значение для t2 или v2\n";
-        return 1;
-    }
+    if (!checkInput(t2, v2)) return 1;
 
     cout << "Введите время t3 и скорость v3 для третьей части пути: ";
-    if (!(cin >> t3 >> v3)) {
-        cerr << "Ошибка: введено нечисловое значение для t3 или v3\n";
-        return 1;
-    }
+    if (!checkInput(t3, v3)) return 1;
 
     auto times = calculateTimes(t1, v1, t2, v2, t3, v3);
     cout << "Время, за которое путник одолел первую половину пути: " << times.first << " часов" << endl;
@@ -62,4 +67,5 @@ int main() {
 
     return 0;
 }
+
 
