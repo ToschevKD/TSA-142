@@ -1,5 +1,7 @@
 #include <iostream>
+#include <utility>
 using namespace std;
+
 /**
  * Функция для расчета времени, за которое путник одолеет первую половину пути
  * и время для планирования привала
@@ -13,22 +15,21 @@ using namespace std;
  * @return Время для одоления первой половины пути и время для привала
  */
 pair<double, double> calculateTimes(double t1, double v1, double t2, double v2, double t3, double v3) {
-    // Расчет расстояния, которое нужно пройти путнику
-    double totalDistance = t1*v1 + t2*v2 + t3*v3;
-
-    // Расчет времени для одоления первой половины пути
+    double totalDistance = t1 * v1 + t2 * v2 + t3 * v3;
     double halfDistance = totalDistance / 2.0;
     double timeForHalf = 0.0;
+    double distanceCovered = 0.0;
 
-    if (halfDistance <= t1*v1) {
-        timeForHalf = halfDistance / v1;
-    } else if (halfDistance <= t1*v1 + t2*v2) {
-        timeForHalf = t1 + (halfDistance - t1*v1) / v2;
+    // Расчет времени для одоления первой половины пути
+    if (halfDistance <= (distanceCovered += t1 * v1)) {
+        timeForHalf = (halfDistance - (distanceCovered - t1 * v1)) / v1;
+    } else if (halfDistance <= (distanceCovered += t2 * v2)) {
+        timeForHalf = t1 + (halfDistance - (distanceCovered - t2 * v2)) / v2;
     } else {
-        timeForHalf = t1 + t2 + (halfDistance - t1*v1 - t2*v2) / v3;
+        timeForHalf = t1 + t2 + (halfDistance - distanceCovered) / v3;
     }
 
-    // Расчет времени для привала
+    // Время для привала не изменяется, оно равно сумме всех времен
     double timeForRest = t1 + t2 + t3;
 
     return make_pair(timeForHalf, timeForRest);
@@ -37,21 +38,28 @@ pair<double, double> calculateTimes(double t1, double v1, double t2, double v2, 
 int main() {
     double t1, v1, t2, v2, t3, v3;
 
-    // Ввод времени и скорости для каждого участка пути
     cout << "Введите время t1 и скорость v1 для первой части пути: ";
-    cin >> t1 >> v1;
+    if (!(cin >> t1 >> v1)) {
+        cerr << "Ошибка: введено нечисловое значение для t1 или v1\n";
+        return 1;
+    }
 
     cout << "Введите время t2 и скорость v2 для второй части пути: ";
-    cin >> t2 >> v2;
+    if (!(cin >> t2 >> v2)) {
+        cerr << "Ошибка: введено нечисловое значение для t2 или v2\n";
+        return 1;
+    }
 
     cout << "Введите время t3 и скорость v3 для третьей части пути: ";
-    cin >> t3 >> v3;
+    if (!(cin >> t3 >> v3)) {
+        cerr << "Ошибка: введено нечисловое значение для t3 или v3\n";
+        return 1;
+    }
 
-    // Вызов функции для расчета времени для первой половины пути и времени для привала
     auto times = calculateTimes(t1, v1, t2, v2, t3, v3);
-
-    // Вывод результатов
     cout << "Время, за которое путник одолел первую половину пути: " << times.first << " часов" << endl;
+    cout << "Время для привала: " << times.second << " часов" << endl;
 
     return 0;
 }
+
