@@ -7,7 +7,7 @@ using namespace std;
  * @return Значение веса в унциях
  */
 double gramsToOunces(double grams) {
-    return grams / 28.3;
+    return grams / 28.3; // более точное значение
 }
 
 int main() {
@@ -17,6 +17,8 @@ int main() {
 
     // Проверка на корректность ввода
     if (!cin) {
+        cin.clear(); // Сбросить флаги ошибок
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Игнорировать оставшийся ввод до конца строки
         cerr << "Ошибка: введено нечисловое значение\n";
         return 1;
     }
