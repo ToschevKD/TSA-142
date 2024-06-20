@@ -1,15 +1,22 @@
 #include <iostream>
+#include <limits>
+
 using namespace std;
 
 /**
- * @brief Функция для перевода значения веса из граммов в унции
- * @param grams Значение веса в граммах
- * @return Значение веса в унциях
+ * @brief Функция для перевода значения веса из граммов в унции.
+ * @param grams Значение веса в граммах.
+ * @return Значение веса в унциях.
  */
 double gramsToOunces(double grams) {
-    return grams / 28.3; // более точное значение
+    const double conversionFactor = 28.3;
+    return grams / conversionFactor;
 }
 
+/**
+ * @brief Основная функция программы.
+ * @return Код завершения программы.
+ */
 int main() {
     double grams;
     cout << "Введите значение веса в граммах: ";
@@ -19,13 +26,13 @@ int main() {
     if (!cin) {
         cin.clear(); // Сбросить флаги ошибок
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Игнорировать оставшийся ввод до конца строки
-        cerr << "Ошибка: введено нечисловое значение\n";
+        cerr << "Ошибка: введено нечисловое значение.\n";
         return 1;
     }
 
     // Проверка на отрицательное значение веса
     if (grams < 0) {
-        cerr << "Ошибка: вес не может быть отрицательным\n";
+        cerr << "Ошибка: вес не может быть отрицательным.\n";
         return 1;
     }
 
@@ -34,4 +41,3 @@ int main() {
 
     return 0;
 }
-
