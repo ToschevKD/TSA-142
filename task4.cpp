@@ -36,26 +36,18 @@ int main()
 
     cout << "Введите шаг: ";
     double step = getValue();
-    if (step <=  -numeric_limits<double>::epsilon()) 
+    if (abs(step) <=  -numeric_limits<double>::epsilon()) 
     {
         cout << "Ошибка." << endl;
         return 1; 
     }
 
 
-    cout << "x | y" << endl;
-    for (double x = startX; x < endX + step; x += step)
-    {   if (x >= startX && x <= endX)
-        {
-            double y = calculateFunction(x);
-            cout << x << " | " << y << endl;            
-        }
-        else
-        {
-            cout << "x за пределами заданного диапазона." << endl;
-            break;
-        }
-
+    cout <<"x | y" << endl;
+   for (double x = startX; x < endX + step; x += step)
+    {
+        double y = calculateFunction(x);
+        cout << x << " | " << y << endl;            
     }
 
     return 0;
