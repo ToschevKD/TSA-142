@@ -100,7 +100,7 @@ double getdivi(const double x,const double  y)
 {
       if (y==0)
       {
-        return 0; // Возвращает код ошибки 0
+        abort(); 
     }else{
 
         return x/y;
