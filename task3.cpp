@@ -19,7 +19,13 @@ int main()
     double x = getValue(); 
     cout << "Введите число y: "; 
     double y = getValue(); 
-
+    
+    
+    if (x==y+numeric_limits<double>::epsilon())
+    {
+        cout<<"Числа не должны быть равны";
+        return 1;
+    }
 
     if (x < y + numeric_limits<double>::epsilon()) 
     { 
@@ -31,7 +37,8 @@ int main()
         double temp = y; 
         y = 0.5 * (x + y); 
         x = 2 * x * temp; 
-    } 
+    }
+    
 
 
     cout << "При замене меньшего числа на половину их суммы получим: " << x << endl; 
