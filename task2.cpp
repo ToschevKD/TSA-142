@@ -101,7 +101,6 @@ double getdivi(const double x,const double  y)
       if (y==0)
       {
         abort(); 
-    }else{
 
         return x/y;
     }
