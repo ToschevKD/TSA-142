@@ -2,13 +2,13 @@
 #include <limits>
 using namespace std; 
 
-/** 
+/
 *@brief Считывает значиния с клавиатуры с проверкой ввода 
 *@return возвращает значение, если оно правильное , иначе завершает программу 
 */ 
 double getValue();
 
-/**
+/
 *@brief Точка входа для программы
 *@return 0
 */
@@ -26,8 +26,9 @@ int main()
         cout<<"Числа не должны быть равны";
         return 1;
     }
-
-    if (x < y + numeric_limits<double>::epsilon()) 
+    else
+    {
+     if (x < y + numeric_limits<double>::epsilon()) 
     { 
         double temp = x; 
         x = 0.5 * (x + y);    // Меньшее число заменяем половиной их суммы 
@@ -37,6 +38,7 @@ int main()
         double temp = y; 
         y = 0.5 * (x + y); 
         x = 2 * x * temp; 
+    }
     }
     
 
@@ -57,4 +59,4 @@ double getValue()
         abort(); 
     } 
     return value; 
-} 
+}
