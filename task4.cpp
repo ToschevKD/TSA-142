@@ -2,13 +2,13 @@
 #include <cmath>
 #include <limits>
 using namespace std;
-/**
+/
 *@brief Считывает значиния с клавиатуры с проверкой ввода
 *@return возвращает значение, если оно правильное , иначе завершает программу
 */
 double getValue();
 
-/**
+/
 *@brief  Функция для вычисления значения функции y = sin(log(x))-cos(log(x))+2*log(x)
 *@return sin(log(x))-cos(log(x))+2*log(x)
 */
@@ -42,12 +42,20 @@ int main()
         return 1; 
     }
 
-
+   
     cout <<"x | y" << endl;
    for (double x = startX; x < endX + step; x += step)
     {
+         if (x<0)
+        {
+            cout<<"x должно быть положительным числом";
+            return 1;
+        }
+        else
+        {
         double y = calculateFunction(x);
-        cout << x << " | " << y << endl;            
+        cout << x << " | " << y << endl; 
+        }
     }
 
     return 0;
@@ -67,5 +75,6 @@ double getValue()
 
 double calculateFunction(const double x)
 {
+    
     return sin(log(x))-cos(log(x))+2*log(x);
 }
