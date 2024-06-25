@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-/
+/*
  * @brief Функция для вычисления суммы.
  * @param x Значение переменной x.
  * @param y Значение переменной y.
@@ -9,7 +9,7 @@ using namespace std;
  */
 double getsum( const double x,const double y);
 
-/
+/*
  * @brief Функция для вычисления разности.
  * @param x Значение переменной x.
  * @param y Значение переменной y.
@@ -17,7 +17,7 @@ double getsum( const double x,const double y);
  */
 double getdiff( const double x,const double y);
 
-/
+/*
  * @brief Функция для вычисления произведения.
  * @param x Значение переменной x.
  * @param y Значение переменной y.
@@ -26,20 +26,20 @@ double getdiff( const double x,const double y);
 double getcomp(const double x,const double y);
 
 
-/
+/*
  * @brief Функция для вычисления частного.
  * @param x Значение переменной x.
  * @param y Значение переменной y.
  * @return Результат вычисления переменной divi.
  */
 double getdivi(const double x,const double y);
-/
+/*
 *@brief Считывает значиния с клавиатуры с проверкой ввода
 *@return возвращает значение, если оно правильное , иначе завершает программу
 */
 double getValue();
 
-/
+/*
 * @brief Точка входа в программу
 * @return Возвращает 0,если функция выполнена верно
 */
@@ -107,6 +107,4 @@ double getdivi(const double x,const double  y)
         return x/y;   
     }
 }
-        return x/y;
-    }
-}
+
