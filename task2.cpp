@@ -61,14 +61,7 @@ double getValue();
     cout << "sum = " <<sum<<endl;
     cout << "diff = "<< diff<<endl;
     cout <<"comp = "<< comp<<endl;
-
-     if (divi== y)
-    {
-        cout<<"деление на ноль невозможно"<<endl;
-    }else{
     cout<<"divi = "<<divi<<endl;
-    }
-
     return 0;
 }
 
@@ -98,13 +91,5 @@ double getcomp(const double x,const double y)
 }
 double getdivi(const double x,const double  y)
 {
-    if (y==0)
-    {
-        return y; 
-    }
-    else
-    {
-        return x/y;   
-    }
+    return x/y;
 }
-
