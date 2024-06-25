@@ -109,8 +109,8 @@ double sumE(const double e)
     double result = 0.0;
     for (int a = 0; abs(current) >= e + numeric_limits<double>::epsilon(); a++)
     {
-        current *= getCurent(a);
         result += current;
+        current *= getCurent(a);
     }
     return result;
 }
