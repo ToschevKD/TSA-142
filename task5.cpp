@@ -3,21 +3,21 @@
 #include <limits>
 using namespace std;
 
-/**
+/*
  * @brief Рассчитывает сумму первых N членов последовательности
  * @param n Число членов последовательности
  * @return Значение суммы
  */
 double sumN(const int n);
 
-/**
+/*
  * @brief Рассчитывает сумму всех членов последовательности, модуль которых не меньше заданного числа e
  * @param e Заданное число e
  * @return Значение суммы
  */
 double sumE(const double e);
 
-/**
+/*
  * @brief Вычисляет текущий член последовательности
  * @param a Индекс члена
  * @return Значение текущего члена
@@ -27,6 +27,12 @@ double getCurent(const int a);
 int getValidN();
 
 double getValidE();
+
+/*
+ * @brief Проверяет на корректность ввода
+ * @return Введённое значение
+ */
+double getValue();
 
 int main()
 {
@@ -49,12 +55,24 @@ int main()
     return 0;
 }
 
+double getValue()
+{
+    double value;
+    cin>>value;
+    if (cin.fail())
+    {
+        cout<<"Некорректное значение"<<endl;
+        abort();
+    }
+    return value;
+}
+
 
 int getValidN()
-{
-    int n;
+{   
     cout << "Введите значение n: ";
-    cin >> n;
+    int n = getValue();
+    
 
     if ( n <= 0)
     {
@@ -67,10 +85,10 @@ int getValidN()
 
 
 double getValidE()
-{
-    double e;
+{   
     cout << "Введите значение e (0 < e < 1): ";
-    cin >> e;
+    double e = getValue();
+    
 
     if (e <= 0 or e > 1)
     {
@@ -80,6 +98,7 @@ double getValidE()
 
     return e;
 }
+
 
 
 double getCurent(const int a)
